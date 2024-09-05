@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página Principal</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido a la Página Principal</h1>
+        <p>Esta es la página principal de tu sitio web.</p>
+        <a href="{% url 'login' %}">Iniciar Sesión</a>
+    </div>
+</body>
+</html>

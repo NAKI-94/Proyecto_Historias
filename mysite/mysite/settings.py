@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'login'
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Después de iniciar sesión, redirige al usuario a la página principal
+LOGIN_REDIRECT_URL = '/'
+
+# Después de cerrar sesión, redirige al formulario de login
+LOGOUT_REDIRECT_URL = '/login/'
