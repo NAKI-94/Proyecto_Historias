@@ -10,6 +10,10 @@
         <h1>Bienvenido a la Página Principal</h1>
         <p>Esta es la página principal de tu sitio web.</p>
         <a href="{% url 'login' %}">Iniciar Sesión</a>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Cerrar Sesión</button>
+        </form>
     </div>
 </body>
 </html>

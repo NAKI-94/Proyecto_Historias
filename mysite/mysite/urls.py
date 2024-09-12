@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('login.urls')),
      path('login/', include('login.urls')),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('pacientes/', include('pacientes.urls')),
     
 ]

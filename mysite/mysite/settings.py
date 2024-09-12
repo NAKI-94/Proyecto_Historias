@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login'
+    'login',
+    'pacientes',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,7 @@ LOGIN_REDIRECT_URL = '/'
 
 # Después de cerrar sesión, redirige al formulario de login
 LOGOUT_REDIRECT_URL = '/login/'
+
+# settings.py
+
+LOGIN_REDIRECT_URL = '/pacientes/'
