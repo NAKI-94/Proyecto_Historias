@@ -12,3 +12,12 @@ class Paciente(models.Model):
 
     def __str__(self):
         return self.nombre_completo
+
+class HistoriaClinica(models.Model):
+    paciente = models.ForeignKey(
+        Paciente, 
+        on_delete=models.CASCADE,
+        related_name='historias_clinicas_pacientes'
+    )
+    fecha = models.DateField()
+    descripcion = models.TextField()

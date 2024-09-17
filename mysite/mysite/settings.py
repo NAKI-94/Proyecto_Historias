@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login',
     'pacientes',
+    'hc_maquillaje',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Historias Clínicas</title>
+</head>
+<body>
+    <h1>Historias Clínicas para {{ paciente.nombre_completo }}</h1>
+
+    <ul>
+        {% for historia in historias_clinicas %}
+            <li>
+                <strong>Fecha:</strong> {{ historia.fecha }} - 
+                <a href="{% url 'hc_maquillaje:editar_historia_clinica' historia.pk %}">Editar</a>
+            </li>
+        {% empty %}
+            <li>No hay historias clínicas registradas.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'pacientes:detalle_paciente' paciente.id %}">Volver al detalle del paciente</a>
+</body>
+</html>

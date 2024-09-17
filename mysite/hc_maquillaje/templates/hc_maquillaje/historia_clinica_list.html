@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Historias Clínicas</title>
+    <!-- Incluye aquí tus archivos de CSS si los tienes -->
+</head>
+<body>
+    <h1>Lista de Historias Clínicas</h1>
+    <ul>
+        {% for historia in object_list %}
+            <li>
+                {{ historia.paciente.nombre }} - {{ historia.descripcion }} - {{ historia.fecha }}
+                <!-- Puedes incluir más campos aquí según tu modelo -->
+                <a href="{% url 'hc_maquillaje:historia_clinica_edit' historia.pk %}">Editar</a>
+
+            </li>
+        {% empty %}
+            <li>No hay historias clínicas disponibles.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'listar_pacientes' %}" class="btn btn-secondary">Volver a la lista</a>
+    <!-- Incluye aquí tus archivos de JavaScript si los tienes -->
+</body>
+</html>

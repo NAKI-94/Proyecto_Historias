@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear Historia Clínica</title>
+</head>
+<body>
+    <h1>Crear Historia Clínica para {{ paciente.nombre_completo }}</h1>
+    
+    <h2>Detalles del Paciente</h2>
+    <ul>
+        <!-- Detalles del paciente -->
+        <li><strong>Nombre Completo:</strong> {{ paciente.nombre_completo }}</li>
+        <li><strong>Identificación:</strong> {{ paciente.identificacion }}</li>
+        <li><strong>Edad:</strong> {{ paciente.edad }}</li>
+        <li><strong>Género:</strong> {{ paciente.genero }}</li>
+        <li><strong>Teléfono:</strong> {{ paciente.telefono }}</li>
+        <li><strong>Dirección:</strong> {{ paciente.direccion }}</li>
+        <li><strong>Email:</strong> {{ paciente.email }}</li>
+        <li><strong>Ocupación:</strong> {{ paciente.ocupacion }}</li>
+        <!-- Agrega más campos según tu modelo Paciente -->
+
+    </ul>
+
+    <h2>Formulario para Crear Historia Clínica</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if form.errors %}
+            <div class="errors">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
+

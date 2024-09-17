@@ -44,6 +44,13 @@
                     <a href="{% url 'editar_paciente' paciente.pk %}" class="btn btn-warning">Editar</a>
                     <a href="{% url 'eliminar_paciente' paciente.pk %}" class="btn btn-danger">Eliminar</a>
                     <a href="{% url 'listar_pacientes' %}" class="btn btn-secondary">Volver a la lista</a>
+                    <a href="{% url 'hc_maquillaje:crear_historia_clinica' paciente.id %}" class="btn btn-primary">Crear Historia Clínica</a>
+                    <a href="{% url 'hc_maquillaje:historia_clinica_list' paciente.id %}" class="btn btn-primary">Ver Historias Clínicas</a>
+
+
+                    
+
+
                 </div>
             </div>
         </div>

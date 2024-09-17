@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Historia Clínica</title>
+</head>
+<body>
+    <h1>Editar Historia Clínica</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'hc_maquillaje:historia_clinica_list' paciente_id %}">Volver a la lista</a>
+</body>
+</html>

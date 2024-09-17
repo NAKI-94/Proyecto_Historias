@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Paciente
+from django.urls import reverse
+from .models import Paciente,HistoriaClinica
 from .forms import PacienteForm
 
 # Lista de pacientes
@@ -44,4 +45,8 @@ def eliminar_paciente(request, pk):
 #VER PACIENTE 
 def detalle_paciente(request, pk):
     paciente = get_object_or_404(Paciente, pk=pk)
-    return render(request, 'pacientes/detalle_paciente.html', {'paciente': paciente})
+    historias_clinicas = HistoriaClinica.objects.filter(paciente=paciente)
+    return render(request, 'pacientes/detalle_paciente.html',
+                  {'paciente': paciente,
+                   'historias_clinicas': historias_clinicas,
+                    'crear_historia_clinica_url': reverse('hc_maquillaje:crear_historia_clinica', args=[paciente.id])})
