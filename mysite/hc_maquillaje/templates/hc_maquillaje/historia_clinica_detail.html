@@ -1,0 +1,27 @@
+<div class="container mt-4">
+    <h1 class="mb-4">Detalles de la Historia Clínica</h1>
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">Paciente: {{ paciente.nombre_completo }}</h5>
+        </div>
+        <div class="card-body">
+            <p><strong>Fecha:</strong> {{ object.fecha }}</p>
+            <p><strong>Descripción:</strong> {{ object.descripcion }}</p>
+            <p><strong>Remitido por:</strong> {{ object.remitido_por }}</p>
+            <p><strong>Ocupación:</strong> {{ object.ocupacion }}</p>
+            <p><strong>Hijos:</strong> {{ object.hijos }}</p>
+            <p><strong>Medicamentos:</strong> {{ object.medicamentos }}</p>
+            <p><strong>Enfermedades:</strong> {{ object.enfermedades }}</p>
+            <p><strong>Cx:</strong> {{ object.cx }}</p>
+            <p><strong>Motivo de Consulta:</strong> {{ object.motivo_consulta }}</p>
+            
+            <!-- Otros detalles adicionales -->
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-3">
+        <a href="{% url 'hc_maquillaje:historia_clinica_edit' object.id %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'hc_maquillaje:historia_clinica_list' paciente.id %}" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+</div>

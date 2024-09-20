@@ -7,10 +7,11 @@
     <h1>Historias Clínicas para {{ paciente.nombre_completo }}</h1>
 
     <ul>
-        {% for historia in historias_clinicas %}
+        {% for historia_clinica in historias_clinicas %}
             <li>
                 <strong>Fecha:</strong> {{ historia.fecha }} - 
                 <a href="{% url 'hc_maquillaje:editar_historia_clinica' historia.pk %}">Editar</a>
+                <a href="{% url 'hc_maquillaje:ver_historia_clinica' historia_clinica.id %}" class="btn btn-info">Ver</a>
             </li>
         {% empty %}
             <li>No hay historias clínicas registradas.</li>

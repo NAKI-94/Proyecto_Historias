@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'login',
     'pacientes',
     'hc_maquillaje',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,7 @@ LOGOUT_REDIRECT_URL = '/login/'
 # settings.py
 
 LOGIN_REDIRECT_URL = '/pacientes/'
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

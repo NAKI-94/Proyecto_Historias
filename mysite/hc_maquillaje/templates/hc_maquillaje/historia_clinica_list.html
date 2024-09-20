@@ -5,6 +5,7 @@
     <!-- Incluye aquí tus archivos de CSS si los tienes -->
 </head>
 <body>
+    {% include 'pacientes/navbar.html' %}
     <h1>Lista de Historias Clínicas</h1>
     <ul>
         {% for historia in object_list %}
@@ -12,6 +13,11 @@
                 {{ historia.paciente.nombre }} - {{ historia.descripcion }} - {{ historia.fecha }}
                 <!-- Puedes incluir más campos aquí según tu modelo -->
                 <a href="{% url 'hc_maquillaje:historia_clinica_edit' historia.pk %}">Editar</a>
+
+                <a href="{% url 'hc_maquillaje:ver_historia_clinica' historia.pk %}" class="btn btn-info">Ver</a>
+
+
+
 
             </li>
         {% empty %}

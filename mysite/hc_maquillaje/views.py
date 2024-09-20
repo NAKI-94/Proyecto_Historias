@@ -2,10 +2,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import HistoriaClinica, Paciente
 from .forms import HistoriaClinicaForm
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import UpdateView, CreateView
+from django.urls import reverse_lazy
 
+# Vista para crear una nueva historia clínica
 def crear_historia_clinica(request, paciente_id):
     paciente = get_object_or_404(Paciente, id=paciente_id)
-    
+
     if request.method == 'POST':
         form = HistoriaClinicaForm(request.POST)
         if form.is_valid():
@@ -15,12 +19,17 @@ def crear_historia_clinica(request, paciente_id):
             return redirect('hc_maquillaje:historia_clinica_list', paciente_id=paciente.id)
     else:
         form = HistoriaClinicaForm()
+    
+    context = {
+        'form': form,
+        'paciente': paciente,
+    }
 
-    return render(request, 'hc_maquillaje/crear_historia_clinica.html', {'form': form, 'paciente': paciente})
+    return render(request, 'hc_maquillaje/crear_historia_clinica.html', context)
 
-from django.views.generic import ListView
-from .models import HistoriaClinica
 
+
+# Vista para listar las historias clínicas
 class HistoriaClinicaListView(ListView):
     model = HistoriaClinica
     template_name = 'hc_maquillaje/historia_clinica_list.html'
@@ -30,14 +39,32 @@ class HistoriaClinicaListView(ListView):
         paciente_id = self.kwargs.get('paciente_id')
         return HistoriaClinica.objects.filter(paciente_id=paciente_id)
 
-from django.urls import reverse_lazy
-from django.views.generic.edit import UpdateView
-from .models import HistoriaClinica
-
+# Vista para actualizar una historia clínica
 class HistoriaClinicaUpdateView(UpdateView):
     model = HistoriaClinica
-    fields = ['fecha', 'descripcion']
+    form_class = HistoriaClinicaForm  # Solo el form_class, sin fields
     template_name = 'hc_maquillaje/historia_clinica_edit.html'
-    
+
     def get_success_url(self):
         return reverse_lazy('hc_maquillaje:historia_clinica_list', kwargs={'paciente_id': self.object.paciente.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Obtener el paciente asociado a la historia clínica
+        historia_clinica = self.get_object()
+        paciente = get_object_or_404(Paciente, id=historia_clinica.paciente_id)
+        context['paciente_id'] = paciente.id
+        return context
+
+# Vista para detallar la historia clínica
+class HistoriaClinicaDetailView(DetailView):
+    model = HistoriaClinica
+    template_name = 'hc_maquillaje/historia_clinica_detail.html'  # Plantilla para mostrar los detalles
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Obtener el paciente asociado a la historia clínica
+        historia_clinica = self.get_object()
+        paciente = get_object_or_404(Paciente, id=historia_clinica.paciente_id)
+        context['paciente'] = paciente
+        return context

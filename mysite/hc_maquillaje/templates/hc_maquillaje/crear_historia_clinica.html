@@ -2,42 +2,198 @@
 <html>
 <head>
     <title>Crear Historia Clínica</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
 </head>
 <body>
-    <h1>Crear Historia Clínica para {{ paciente.nombre_completo }}</h1>
-    
-    <h2>Detalles del Paciente</h2>
-    <ul>
-        <!-- Detalles del paciente -->
-        <li><strong>Nombre Completo:</strong> {{ paciente.nombre_completo }}</li>
-        <li><strong>Identificación:</strong> {{ paciente.identificacion }}</li>
-        <li><strong>Edad:</strong> {{ paciente.edad }}</li>
-        <li><strong>Género:</strong> {{ paciente.genero }}</li>
-        <li><strong>Teléfono:</strong> {{ paciente.telefono }}</li>
-        <li><strong>Dirección:</strong> {{ paciente.direccion }}</li>
-        <li><strong>Email:</strong> {{ paciente.email }}</li>
-        <li><strong>Ocupación:</strong> {{ paciente.ocupacion }}</li>
-        <!-- Agrega más campos según tu modelo Paciente -->
+    {% include 'pacientes/navbar.html' %}
+    <h1 class="text-center mb-4">Crear Historia Clínica para {{ paciente.nombre_completo }}</h1>
 
-    </ul>
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2 class="card-title">Detalles del Paciente</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Nombre Completo:</strong> {{ paciente.nombre_completo }}</p>
+                </div>    
 
-    <h2>Formulario para Crear Historia Clínica</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% if form.errors %}
-            <div class="errors">
-                <ul>
-                    {% for field in form %}
-                        {% for error in field.errors %}
-                            <li>{{ field.label }}: {{ error }}</li>
-                        {% endfor %}
-                    {% endfor %}
-                </ul>
+                <div class="col-md-3 mb-3">    
+                    <p class="card-text"><strong>Identificación:</strong> {{ paciente.identificacion }}</p>
+                </div>    
+
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Edad:</strong> {{ paciente.edad }}</p>
+                </div>    
+
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Género:</strong> {{ paciente.genero }}</p>
+                </div>
+
+                <div class="col-md-3 mb-3"> 
+                    <p class="card-text"><strong>Teléfono:</strong> {{ paciente.telefono }}</p>
+                </div>   
+
+                <div class="col-md-3 mb-3">        
+                    <p class="card-text"><strong>Dirección:</strong> {{ paciente.direccion }}</p>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Email:</strong> {{ paciente.email }}</p>
+                </div>    
+
+                <div class="col-md-3 mb-3">    
+                    <p class="card-text"><strong>Ocupación:</strong> {{ paciente.ocupacion }}</p>
+                </div>    
+
+
             </div>
-        {% endif %}
-        <button type="submit">Guardar</button>
-    </form>
+        </div>
+    </div>
+
+
+
+
+    
+    <h2 class="mb-3">Formulario para Crear Historia Clínica</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" class="row g-3 needs-validation" novalidate>
+            {% csrf_token %}
+            
+      <!-- Renderización de los campos del formulario -->
+<div class="my-4">
+    <h3 class="mb-3">Información General</h3>    
+    <div class="card-body">
+        <div class="row">
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Fecha de Historia:</strong> {{ form.fecha }}</p>
+                </div>
+                
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Descripcion:</strong> {{ form.descripcion }}</p>
+                </div>    
+                
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Remitido Por:</strong> {{ form.remitido_por }}</p>
+                </div>
+                
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Ocupacion:</strong> {{ form.ocupacion }}</p>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_hijos" class="form-label">Número de Hijos</label>
+                    <input type="number" class="form-control" id="id_hijos" name="hijos" required>
+                </div>
+                
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Medicamentos:</strong> {{ form.medicamentos }}</p>
+                </div>
+                
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Enfermedades:</strong> {{ form.enfermedades }}</p>
+                </div>
+                
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Cx:</strong> {{ form.cx }}</p>
+                </div>
+                
+                <div class="col-md-3 mb-3">
+                    <p class="card-text"><strong>Motivo Consulta:</strong> {{ form.motivo_consulta }}</p>       
+                </div>
+                
+            
+        </div>
+    </div>
+</div>
+
+<!-- Maquillaje Anterior -->
+<div class="my-4">
+    <h3 class="mb-3">Maquillaje Anterior</h3>    
+    <div class="card">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Cejas Anteriores:</strong> {{ form.cejas_anteriores }}</li>
+                <li class="list-group-item"><strong>Lineas Anteriores:</strong> {{ form.lineas_anteriores }}</li>
+                <li class="list-group-item"><strong>Labios Anteriores:</strong> {{ form.labios_anteriores }}</li>
+                <li class="list-group-item"><strong>Tiempo Anteriores:</strong> {{ form.tiempo_anteriores }}</li>
+                <li class="list-group-item"><strong>Tiempo Elaborado:</strong> {{ form.tiempo_elaborado }}</li>
+                <li class="list-group-item"><strong>Color Anterior:</strong> {{ form.color_anterior }}</li>
+                <li class="list-group-item"><strong>Alergias:</strong> {{ form.alergias }}</li>
+                <li class="list-group-item"><strong>Observaciones:</strong> {{ form.observaciones }}</li>
+                <li class="list-group-item"><strong>Correciones:</strong> {{ form.correcciones }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Maquillaje Actual -->
+<div class="my-4">
+    <h3 class="mb-3">Maquillaje Actual</h3>    
+    <div class="card">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Cejas Actuales:</strong> {{ form.cejas_actuales }}</li>
+                <li class="list-group-item"><strong>Color Actual:</strong> {{ form.color_actual }}</li>
+                <li class="list-group-item"><strong>Neutralizar:</strong> {{ form.neutralizar }}</li>
+                <li class="list-group-item"><strong>Lineas Superior:</strong> {{ form.lineas_superior }}</li>
+                <li class="list-group-item"><strong>Lineas Inferior:</strong> {{ form.lineas_inferior }}</li>
+                <li class="list-group-item"><strong>Labios Actuales:</strong> {{ form.labios_actuales }}</li>
+                <li class="list-group-item"><strong>Anestesia Tópica:</strong> {{ form.anestesia_topica }}</li>
+                <li class="list-group-item"><strong>Anestesia Inyectada:</strong> {{ form.anestesia_inyectada }}</li>
+                <li class="list-group-item"><strong>Material Desechable:</strong> {{ form.material_desechable }}</li>
+                <li class="list-group-item"><strong>Resultado Satisfactorio:</strong> {{ form.resultado_satisfactorio }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Otros Campos -->
+<div class="my-4">
+    <h3 class="mb-3">Otros Campos</h3>    
+    <div class="card">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <div class="mb-3">
+                    <label for="id_costo_maquillaje" class="form-label">Costo del Maquillaje</label>
+                    <input type="number" class="form-control" id="id_costo_maquillaje" name="costo_maquillaje" required>
+                </div>
+                <li class="list-group-item"><strong>Retoque Fecha:</strong> {{ form.retoque_fecha }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+            <!-- Manejo de errores generales del formulario -->
+            {% if form.errors %}
+                <div class="alert alert-danger mt-3">
+                    <ul class="list-group">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                            <div class="card-body">
+                                <li class="list-group-item"><strong>{{ field.label }}:</strong> {{ error }}</li>
+                            </div>    
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+            <!-- Botón de enviar formulario -->
+            <div class="col-12 text-end">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <!-- Bootstrap JS (Optional, for dynamic components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
