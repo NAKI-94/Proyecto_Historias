@@ -6,6 +6,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, CreateView
 from django.urls import reverse_lazy
 
+
 # Vista para crear una nueva historia clínica
 def crear_historia_clinica(request, paciente_id):
     paciente = get_object_or_404(Paciente, id=paciente_id)
@@ -42,7 +43,7 @@ class HistoriaClinicaListView(ListView):
 # Vista para actualizar una historia clínica
 class HistoriaClinicaUpdateView(UpdateView):
     model = HistoriaClinica
-    form_class = HistoriaClinicaForm  # Solo el form_class, sin fields
+    form_class = HistoriaClinicaForm
     template_name = 'hc_maquillaje/historia_clinica_edit.html'
 
     def get_success_url(self):
@@ -50,12 +51,14 @@ class HistoriaClinicaUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Obtener el paciente asociado a la historia clínica
+        # Obtener la historia clínica actual
         historia_clinica = self.get_object()
+        # Obtener el paciente asociado a la historia clínica
         paciente = get_object_or_404(Paciente, id=historia_clinica.paciente_id)
-        context['paciente_id'] = paciente.id
+        
+        # Agregar el objeto paciente al contexto
+        context['paciente'] = paciente  # Cambia 'paciente_id' a 'paciente'
         return context
-
 # Vista para detallar la historia clínica
 class HistoriaClinicaDetailView(DetailView):
     model = HistoriaClinica
@@ -68,3 +71,5 @@ class HistoriaClinicaDetailView(DetailView):
         paciente = get_object_or_404(Paciente, id=historia_clinica.paciente_id)
         context['paciente'] = paciente
         return context
+
+

@@ -1,16 +1,213 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Editar Historia Clínica</title>
+    <link href="{% static 'css/estilos.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     {% include 'pacientes/navbar.html' %}
-    <h1>Editar Historia Clínica</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
-    </form>
-    <a href="{% url 'hc_maquillaje:historia_clinica_list' paciente_id %}">Volver a la lista</a>
+    <div class="container mt-5">
+        <h1>Editar Historia Clínica</h1>
+        
+        <!-- Detalles del Paciente -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="card-title">Detalles del Paciente</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3"><strong>Nombre Completo:</strong> {{ paciente.nombre_completo }}</div>
+                    <div class="col-md-3 mb-3"><strong>Identificación:</strong> {{ paciente.identificacion }}</div>
+                    <div class="col-md-3 mb-3"><strong>Edad:</strong> {{ paciente.edad }}</div>
+                    <div class="col-md-3 mb-3"><strong>Género:</strong> {{ paciente.genero }}</div>
+                    <div class="col-md-3 mb-3"><strong>Teléfono:</strong> {{ paciente.telefono }}</div>
+                    <div class="col-md-3 mb-3"><strong>Dirección:</strong> {{ paciente.direccion }}</div>
+                    <div class="col-md-3 mb-3"><strong>Email:</strong> {{ paciente.email }}</div>
+                    <div class="col-md-3 mb-3"><strong>Ocupación:</strong> {{ paciente.ocupacion }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario para editar historia clínica -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="post" class="row g-3 needs-validation" novalidate>
+                    {% csrf_token %}
+
+                    <!-- Información General -->
+                    <h3 class="mb-3">Información General</h3>
+                    <div class="card mb-3">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="id_fecha"><strong>Fecha de Historia:</strong></label>
+                                {{ form.fecha }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="id_remitido_por"><strong>Remitido Por:</strong></label>
+                                {{ form.remitido_por }}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_descripcion"><strong>Descripción:</strong></label>
+                                {{ form.descripcion }}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_ocupacion"><strong>Ocupación:</strong></label>
+                                {{ form.ocupacion }}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_medicamentos"><strong>Medicamentos:</strong></label>
+                                {{ form.medicamentos }}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_enfermedades"><strong>Enfermedades:</strong></label>
+                                {{ form.enfermedades }}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_cx"><strong>Cx:</strong></label>
+                                {{ form.cx }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="id_hijos" class="form-label"><strong>Número de Hijos:</strong></label>
+                                <input type="number" class="form-control" id="id_hijos" name="hijos" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_motivo_consulta" class="form-label"><strong>Motivo Consulta:</strong></label>
+                                {{ form.motivo_consulta }}  <!-- Renderiza el widget personalizado -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Maquillaje Anterior -->
+                    
+                    <div class="mb-4">
+                        <h3 class="mb-3">Maquillaje Anterior</h3>
+                        <div class="card">
+                            <div class="container">
+                             <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                     <strong>Cejas Anteriores:</strong>
+                                        {{ form.cejas_anteriores }}
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <strong>Líneas Anteriores:</strong>
+                                        {{ form.lineas_anteriores }}
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                    <strong>Labios Anteriores:</strong>
+                                    {{ form.labios_anteriores }}
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                    <strong>Tiempo Anteriores:</strong>
+                                    {{ form.tiempo_anteriores }}
+                                    </div>
+                                </div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <strong>Color Anterior:</strong>
+                                    {{ form.color_anterior }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <strong>Tiempo Elaborado:</strong>
+                                    {{ form.tiempo_elaborado }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_alergias"><strong>Alergias:</strong></label>
+                                {{ form.alergias }}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_observaciones"><strong>Observaciones:</strong></label>
+                                {{ form.observaciones }}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_correcciones"><strong>Correcciones:</strong></label>
+                                {{ form.correcciones }}
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+
+                    <!-- Maquillaje Actual -->
+                    <h3 class="mb-3">Maquillaje Actual</h3>
+                    <div class="card mb-3">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <strong>Cejas Actuales:</strong> {{ form.cejas_actuales }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <strong>Neutralizar:</strong>
+                                    {{ form.neutralizar }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <strong>Líneas Superior:</strong>
+                                    {{ form.lineas_superior }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <strong>Líneas Inferior:</strong>
+                                    {{ form.lineas_inferior }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <strong>Labios Actuales:</strong>
+                                    {{ form.labios_actuales }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <strong>Anestesia Tópica:</strong>
+                                    {{ form.anestesia_topica }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <strong>Anestesia Inyectada:</strong>
+                                    {{ form.anestesia_inyectada }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <strong>Color Actual:</strong>
+                                    {{ form.color_actual }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_resultado_satisfactorio"><strong>Resultado Satisfactorio:</strong></label>
+                                {{ form.resultado_satisfactorio }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Otros Campos -->
+                    <h3 class="mb-3">Otros Campos</h3>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="id_costo_maquillaje" class="form-label"><strong>Costo del Maquillaje</strong></label>
+                                <input type="number" class="form-control" id="id_costo_maquillaje" name="costo_maquillaje" required>
+                            </div>
+                            <li class="list-group-item"><strong>Retoque Fecha:</strong> {{ form.retoque_fecha }}</li>
+                        </div>
+                    </div>
+
+                    <!-- Manejo de errores generales del formulario -->
+                    {% if form.errors %}
+                        <div class="alert alert-danger mt-3">
+                            <ul class="list-group">
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>{{ field.label }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                    <!-- Botón de Guardar -->
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,0 +1,21 @@
+textarea.form-control {
+    border: 1px solid #ced4da; /* Color de borde */
+    padding: 10px; /* Espacio interno */
+    resize: vertical; /* Permite redimensionar solo verticalmente */
+    background-color: #f8f9fa; /* Fondo claro */
+}
+
+textarea.form-control:focus {
+    border-color: #80bdff; /* Color de borde al hacer foco */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra al hacer foco */
+}
+
+
+/* estilos.css */
+.motivo-consulta-textarea {
+    font-size: 14px; /* Tamaño de fuente */
+    padding: 10px;   /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid #ccc; /* Color del borde */
+}
+

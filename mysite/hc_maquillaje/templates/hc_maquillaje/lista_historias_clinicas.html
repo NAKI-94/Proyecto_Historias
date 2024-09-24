@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historias Clínicas</title>
+    <!-- Incluir Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Historias Clínicas para {{ paciente.nombre_completo }}</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Historias Clínicas para {{ paciente.nombre_completo }}</h1>
 
-    <ul>
-        {% for historia_clinica in historias_clinicas %}
-            <li>
-                <strong>Fecha:</strong> {{ historia.fecha }} - 
-                <a href="{% url 'hc_maquillaje:editar_historia_clinica' historia.pk %}">Editar</a>
-                <a href="{% url 'hc_maquillaje:ver_historia_clinica' historia_clinica.id %}" class="btn btn-info">Ver</a>
-            </li>
-        {% empty %}
-            <li>No hay historias clínicas registradas.</li>
-        {% endfor %}
-    </ul>
+        <ul class="list-group">
+            {% for historia_clinica in historias_clinicas %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                        <strong>Fecha:</strong> {{ historia_clinica.fecha }}
+                    </span>
+                    <span class="botones">
+                        <a href="{% url 'hc_maquillaje:editar_historia_clinica' historia_clinica.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'hc_maquillaje:ver_historia_clinica' historia_clinica.id %}" class="btn btn-info btn-sm">Ver</a>
+                    </span>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No hay historias clínicas registradas.</li>
+            {% endfor %}
+        </ul>
 
-    <a href="{% url 'pacientes:detalle_paciente' paciente.id %}">Volver al detalle del paciente</a>
+        <a href="{% url 'pacientes:detalle_paciente' paciente.id %}" class="btn btn-secondary mt-4">Volver al detalle del paciente</a>
+    </div>
+
+    <!-- Incluir Bootstrap JS y dependencias (opcional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

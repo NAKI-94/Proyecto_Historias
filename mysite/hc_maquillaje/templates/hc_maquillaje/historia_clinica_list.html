@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Historias Clínicas</title>
-    <!-- Incluye aquí tus archivos de CSS si los tienes -->
+    <!-- Incluye Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     {% include 'pacientes/navbar.html' %}
-    <h1>Lista de Historias Clínicas</h1>
-    <ul>
-        {% for historia in object_list %}
-            <li>
-                {{ historia.paciente.nombre }} - {{ historia.descripcion }} - {{ historia.fecha }}
-                <!-- Puedes incluir más campos aquí según tu modelo -->
-                <a href="{% url 'hc_maquillaje:historia_clinica_edit' historia.pk %}">Editar</a>
+    
+    <div class="container mt-4">
+        <h1 class="mb-4">Lista de Historias Clínicas</h1>
 
-                <a href="{% url 'hc_maquillaje:ver_historia_clinica' historia.pk %}" class="btn btn-info">Ver</a>
+        <ul class="list-group">
+            {% for historia in object_list %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        {{ historia.paciente.nombre }} - {{ historia.descripcion }} - {{ historia.fecha }}
+                    </div>
+                    <div class="botones">
+                        <a href="{% url 'hc_maquillaje:historia_clinica_edit' historia.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'hc_maquillaje:ver_historia_clinica' historia.pk %}" class="btn btn-info btn-sm">Ver</a>
+                    </div>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No hay historias clínicas disponibles.</li>
+            {% endfor %}
+        </ul>
 
+        <a href="{% url 'listar_pacientes' %}" class="btn btn-secondary mt-4">Volver a la lista</a>
+    </div>
 
-
-
-            </li>
-        {% empty %}
-            <li>No hay historias clínicas disponibles.</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'listar_pacientes' %}" class="btn btn-secondary">Volver a la lista</a>
-    <!-- Incluye aquí tus archivos de JavaScript si los tienes -->
+    <!-- Incluye Bootstrap JS y dependencias (opcional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

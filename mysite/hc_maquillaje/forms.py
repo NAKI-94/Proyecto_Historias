@@ -18,5 +18,56 @@ class HistoriaClinicaForm(forms.ModelForm):
         
         # Agrega el campo paciente como oculto
         widgets = {
-            'paciente': forms.HiddenInput()
+            'paciente': forms.HiddenInput(),
+            'ocupacion': forms.Textarea(attrs={'class': 'form-control ocupacion-textarea'}),
+            'motivo_consulta': forms.Textarea(attrs={
+                'class': 'form-control motivo-consulta-textarea',  # Clases CSS personalizadas
+                'rows': 4,  # Número de filas del textarea (opcional)
+                'placeholder': 'Describe el motivo de la consulta aquí...',  # Placeholder (opcional)
+            }),
+            'descripcion': forms.Textarea(attrs={
+                'class': 'form-control motivo-consulta-textarea',  # Clases CSS personalizadas
+                'rows': 4,
+                'placeholder': 'Añadir descripción...',
+            }),
+            'ocupacion': forms.Textarea(attrs={
+                'class': 'form-control motivo-consulta-textarea',  # Clases CSS personalizadas
+                'rows': 4,
+                'placeholder': 'Especificar ocupación...',
+            }),
+            'medicamentos': forms.Textarea(attrs={
+                'class': 'form-control motivo-consulta-textarea',  # Clases CSS personalizadas
+                'rows': 4,
+                'placeholder': 'Medicamentos que esté tomando el paciente...',
+            }),
+            'enfermedades': forms.Textarea(attrs={
+                'class': 'form-control motivo-consulta-textarea',  # Clases CSS personalizadas
+                'rows': 4,
+                'placeholder': 'Enfermedades relevantes del paciente...',
+            }),
+            'cx': forms.Textarea(attrs={
+                'class': 'form-control motivo-consulta-textarea',  # Clases CSS personalizadas
+                'rows': 4,
+                'placeholder': 'Historial de cirugías (Cx)...',
+            }),
+            'alergias': forms.Textarea(attrs={
+                'class': 'form-control motivo-consulta-textarea',
+                'rows': 4,
+                'placeholder': 'Alergias conocidas...',
+            }),
+            'observaciones': forms.Textarea(attrs={
+                'class': 'form-control motivo-consulta-textarea',
+                'rows': 4,
+                'placeholder': 'Observaciones adicionales...',
+            }),
+            'correcciones': forms.Textarea(attrs={
+                'class': 'form-control motivo-consulta-textarea',
+                'rows': 4,
+                'placeholder': 'Correcciones realizadas...',
+            }),
+            'resultado_satisfactorio': forms.Textarea(attrs={
+                'class': 'form-control motivo-consulta-textarea',
+                'rows': 4,
+                'placeholder': 'Describe el resultado satisfactorio aquí...',
+            }),
         }

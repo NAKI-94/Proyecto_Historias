@@ -1,27 +1,173 @@
-<div class="container mt-4">
-    <h1 class="mb-4">Detalles de la Historia Clínica</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Historia Clínica</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Detalles de la Historia Clínica</h1>
 
-    <div class="card">
-        <div class="card-header bg-primary text-white">
-            <h5 class="card-title mb-0">Paciente: {{ paciente.nombre_completo }}</h5>
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">Paciente: {{ paciente.nombre_completo }}</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Fecha:</strong> {{ object.fecha }}</p>
+                        <p><strong>Descripción:</strong> {{ object.descripcion }}</p>
+                        <p><strong>Remitido por:</strong> {{ object.remitido_por }}</p>
+                        <p><strong>Ocupación:</strong> {{ object.ocupacion }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Hijos:</strong> {{ object.hijos }}</p>
+                        <p><strong>Medicamentos:</strong> {{ object.medicamentos }}</p>
+                        <p><strong>Enfermedades:</strong> {{ object.enfermedades }}</p>
+                        <p><strong>Cx:</strong> {{ object.cx }}</p>
+                        <p><strong>Motivo de Consulta:</strong> {{ object.motivo_consulta }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <p><strong>Fecha:</strong> {{ object.fecha }}</p>
-            <p><strong>Descripción:</strong> {{ object.descripcion }}</p>
-            <p><strong>Remitido por:</strong> {{ object.remitido_por }}</p>
-            <p><strong>Ocupación:</strong> {{ object.ocupacion }}</p>
-            <p><strong>Hijos:</strong> {{ object.hijos }}</p>
-            <p><strong>Medicamentos:</strong> {{ object.medicamentos }}</p>
-            <p><strong>Enfermedades:</strong> {{ object.enfermedades }}</p>
-            <p><strong>Cx:</strong> {{ object.cx }}</p>
-            <p><strong>Motivo de Consulta:</strong> {{ object.motivo_consulta }}</p>
-            
-            <!-- Otros detalles adicionales -->
+
+        <!-- Maquillaje Anterior -->
+        <div class="mb-4">
+            <h3 class="mb-3">Maquillaje Anterior</h3>
+            <div class="card">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label>
+                                <input type="checkbox" disabled {% if object.cejas_anteriores %}checked{% endif %}>
+                                <strong>Cejas Anteriores</strong>
+                            </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label>
+                                <input type="checkbox" disabled {% if object.lineas_anteriores %}checked{% endif %}>
+                                <strong>Líneas Anteriores</strong>
+                            </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label>
+                                <input type="checkbox" disabled {% if object.labios_anteriores %}checked{% endif %}>
+                                <strong>Labios Anteriores</strong>
+                            </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label>
+                                <input type="checkbox" disabled {% if object.tiempo_anteriores %}checked{% endif %}>
+                                <strong>Tiempo Anteriores</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <strong>Color Anterior:</strong> {{ object.color_anterior }}
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <strong>Tiempo Elaborado:</strong> {{ object.tiempo_elaborado }}
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="id_alergias"><strong>Alergias:</strong></label>
+                            {{ object.alergias }}
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="id_observaciones"><strong>Observaciones:</strong></label>
+                            {{ object.observaciones }}
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="id_correcciones"><strong>Correcciones:</strong></label>
+                            {{ object.correcciones }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Maquillaje Actual -->
+        <h3 class="mb-3">Maquillaje Actual</h3>
+        <div class="card mb-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label>
+                            <input type="checkbox" disabled {% if object.cejas_actuales %}checked{% endif %}>
+                            <strong>Cejas Actuales</strong>
+                        </label>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label>
+                            <input type="checkbox" disabled {% if object.neutralizar %}checked{% endif %}>
+                            <strong>Neutralizar</strong>
+                        </label>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label>
+                            <input type="checkbox" disabled {% if object.lineas_superior %}checked{% endif %}>
+                            <strong>Líneas Superior</strong>
+                        </label>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label>
+                            <input type="checkbox" disabled {% if object.lineas_inferior %}checked{% endif %}>
+                            <strong>Líneas Inferior</strong>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label>
+                            <input type="checkbox" disabled {% if object.labios_actuales %}checked{% endif %}>
+                            <strong>Labios Actuales</strong>
+                        </label>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label>
+                            <input type="checkbox" disabled {% if object.anestesia_topica %}checked{% endif %}>
+                            <strong>Anestesia Tópica</strong>
+                        </label>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label>
+                            <input type="checkbox" disabled {% if object.anestesia_inyectada %}checked{% endif %}>
+                            <strong>Anestesia Inyectada</strong>
+                        </label>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <strong>Color Actual:</strong> {{ object.color_actual }}
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="id_resultado_satisfactorio"><strong>Resultado Satisfactorio:</strong></label>
+                    {{ form.resultado_satisfactorio }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Otros Campos -->
+        <h3 class="mb-3">Otros Campos</h3>
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="id_costo_maquillaje" class="form-label"><strong>Costo del Maquillaje</strong></label>
+                    <input type="number" class="form-control" id="id_costo_maquillaje" name="costo_maquillaje" required>
+                </div>
+                <li class="list-group-item"><strong>Retoque Fecha:</strong> {{ object.retoque_fecha }}</li>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-3">
+            <a href="{% url 'hc_maquillaje:historia_clinica_edit' object.id %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'hc_maquillaje:historia_clinica_list' paciente.id %}" class="btn btn-secondary">Volver a la lista</a>
         </div>
     </div>
 
-    <div class="d-flex justify-content-between mt-3">
-        <a href="{% url 'hc_maquillaje:historia_clinica_edit' object.id %}" class="btn btn-warning">Editar</a>
-        <a href="{% url 'hc_maquillaje:historia_clinica_list' paciente.id %}" class="btn btn-secondary">Volver a la lista</a>
-    </div>
-</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
